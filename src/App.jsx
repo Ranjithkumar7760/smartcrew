@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import heroImage from "../img3.jpg";
 import productRangeImage from "../img5.jpg";
 
-const WHATSAPP_NUMBER = "917674996398";
+const WHATSAPP_NUMBER = "919010614946";
 const DEFAULT_MESSAGE =
   "Hello SmartCrew Services, I’m interested in your industrial heating and cooling solutions. Please share product details and a quotation.";
+
+const CONTACT_NUMBERS = [
+  { display: "+91 90526 43886", tel: "+919052643886", label: "CALL" },
+  { display: "+91 90106 14946", tel: "+919010614946", label: "CALL" },
+];
 
 const whatsappUrl = (message = DEFAULT_MESSAGE) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -99,6 +104,37 @@ function WhatsAppIcon() {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)
+    ) {
+      return;
+    }
+
+    const revealTargets = document.querySelectorAll("[data-reveal]");
+    document.documentElement.classList.add("reveal-ready");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -32px 0px" },
+    );
+
+    revealTargets.forEach((target) => observer.observe(target));
+
+    return () => {
+      observer.disconnect();
+      document.documentElement.classList.remove("reveal-ready");
+    };
+  }, []);
+
   const closeMenu = () => setMenuOpen(false);
 
   function handleEnquiry(event) {
@@ -184,7 +220,7 @@ function App() {
       <main>
         <section className="hero" id="home">
           <div className="container hero-layout">
-            <div className="hero-copy">
+            <div className="hero-copy" data-reveal>
               <p className="eyebrow">
                 <span className="eyebrow-line" />
                 INDUSTRIAL TEMPERATURE CONTROL
@@ -214,7 +250,11 @@ function App() {
               </div>
             </div>
 
-            <div className="hero-visual">
+            <div
+              className="hero-visual"
+              data-reveal
+              style={{ "--reveal-delay": "140ms" }}
+            >
               <div className="hero-image-frame">
                 <img
                   src={heroImage}
@@ -235,15 +275,23 @@ function App() {
 
         <section className="proof-strip" aria-label="Product capabilities">
           <div className="container proof-grid">
-            <div className="proof-item">
+            <div className="proof-item" data-reveal>
               <span className="proof-value">−90° to +350°C</span>
               <span className="proof-label">Temperature range*</span>
             </div>
-            <div className="proof-item">
+            <div
+              className="proof-item"
+              data-reveal
+              style={{ "--reveal-delay": "90ms" }}
+            >
               <span className="proof-value">±0.5°C</span>
               <span className="proof-label">Precision control*</span>
             </div>
-            <div className="proof-item">
+            <div
+              className="proof-item"
+              data-reveal
+              style={{ "--reveal-delay": "180ms" }}
+            >
               <span className="proof-value">0.5–55 kW</span>
               <span className="proof-label">Power range*</span>
             </div>
@@ -255,7 +303,7 @@ function App() {
 
         <section className="section solutions-section" id="solutions">
           <div className="container">
-            <div className="section-heading">
+            <div className="section-heading" data-reveal>
               <div>
                 <p className="eyebrow eyebrow-dark">ENGINEERED FOR INDUSTRY</p>
                 <h2>
@@ -271,8 +319,13 @@ function App() {
             </div>
 
             <div className="product-grid">
-              {products.map((product) => (
-                <article className="product-card" key={product.number}>
+              {products.map((product, index) => (
+                <article
+                  className="product-card"
+                  data-reveal
+                  key={product.number}
+                  style={{ "--reveal-delay": `${index * 100}ms` }}
+                >
                   <div className="product-card-top">
                     <span className="product-number">{product.number}</span>
                     <span className="product-series">{product.series}</span>
@@ -305,7 +358,7 @@ function App() {
 
         <section className="about-section" id="about">
           <div className="container about-layout">
-            <div className="about-image-wrap">
+            <div className="about-image-wrap" data-reveal>
               <img
                 src={productRangeImage}
                 alt="SmartCrew brochure showing heating and cooling product ranges, features, and services"
@@ -316,7 +369,11 @@ function App() {
                 Designed around your process
               </div>
             </div>
-            <div className="about-copy">
+            <div
+              className="about-copy"
+              data-reveal
+              style={{ "--reveal-delay": "120ms" }}
+            >
               <p className="eyebrow eyebrow-dark">ABOUT SMARTCREW</p>
               <h2>
                 Reliable support,
@@ -360,7 +417,7 @@ function App() {
 
         <section className="services-section" id="services">
           <div className="container">
-            <div className="section-heading services-heading">
+            <div className="section-heading services-heading" data-reveal>
               <div>
                 <p className="eyebrow">SUPPORT THROUGHOUT THE LIFECYCLE</p>
                 <h2>
@@ -376,7 +433,12 @@ function App() {
             </div>
             <div className="service-grid">
               {services.map((service, index) => (
-                <article className="service-card" key={service.title}>
+                <article
+                  className="service-card"
+                  data-reveal
+                  key={service.title}
+                  style={{ "--reveal-delay": `${index * 100}ms` }}
+                >
                   <span className="service-index">0{index + 1}</span>
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
@@ -398,7 +460,7 @@ function App() {
 
         <section className="industries-section">
           <div className="container industries-layout">
-            <div>
+            <div data-reveal>
               <p className="eyebrow eyebrow-dark">INDUSTRIES WE SERVE</p>
               <h2>
                 Temperature control
@@ -407,8 +469,13 @@ function App() {
               </h2>
             </div>
             <div className="industry-list">
-              {industries.map((industry) => (
-                <div className="industry-item" key={industry}>
+              {industries.map((industry, index) => (
+                <div
+                  className="industry-item"
+                  data-reveal
+                  key={industry}
+                  style={{ "--reveal-delay": `${index * 50}ms` }}
+                >
                   <CheckIcon />
                   {industry}
                 </div>
@@ -418,7 +485,7 @@ function App() {
         </section>
 
         <section className="contact-banner">
-          <div className="container contact-banner-content">
+          <div className="container contact-banner-content" data-reveal>
             <div>
               <p className="eyebrow">LET'S TALK ABOUT YOUR PROCESS</p>
               <h2>Let's find the right temperature solution.</h2>
@@ -442,7 +509,7 @@ function App() {
 
         <section className="contact-section section" id="contact">
           <div className="container contact-layout">
-            <div className="contact-copy">
+            <div className="contact-copy" data-reveal>
               <p className="eyebrow eyebrow-dark">GET IN TOUCH</p>
               <h2>
                 Tell us what
@@ -454,15 +521,41 @@ function App() {
                 Submitting the form opens WhatsApp with your enquiry ready to
                 send.
               </p>
-              <a className="contact-detail" href="tel:+917674996398">
-                <span className="contact-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M5 4h4l2 5-2.5 1.5a15 15 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1C10 20 4 14 4 5a1 1 0 0 1 1-1Z" />
-                  </svg>
+              {CONTACT_NUMBERS.map((contact, index) => (
+                <a
+                  className="contact-detail"
+                  href={`tel:${contact.tel}`}
+                  key={contact.tel}
+                  data-reveal
+                  style={{ "--reveal-delay": `${index * 80}ms` }}
+                >
+                  <span className="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M5 4h4l2 5-2.5 1.5a15 15 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1C10 20 4 14 4 5a1 1 0 0 1 1-1Z" />
+                    </svg>
+                  </span>
+                  <span>
+                    <small>{contact.label}</small>
+                    {contact.display}
+                  </span>
+                </a>
+              ))}
+              <a
+                className="contact-detail"
+                href={whatsappUrl()}
+                target="_blank"
+                rel="noreferrer"
+                data-reveal
+              >
+                <span
+                  className="contact-icon whatsapp-contact-icon"
+                  aria-hidden="true"
+                >
+                  <WhatsAppIcon />
                 </span>
                 <span>
-                  <small>CALL OR WHATSAPP</small>
-                  +91 76749 96398
+                  <small>WHATSAPP</small>
+                  +91 90106 14946
                 </span>
               </a>
               <a className="contact-detail" href="mailto:yj@smartscrew.in">
@@ -493,7 +586,7 @@ function App() {
               </div>
             </div>
 
-            <form className="enquiry-form" onSubmit={handleEnquiry}>
+            <form className="enquiry-form" data-reveal onSubmit={handleEnquiry}>
               <div className="form-heading">
                 <div>
                   <span className="form-kicker">QUICK ENQUIRY</span>
