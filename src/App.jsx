@@ -164,7 +164,7 @@ function App() {
   return (
     <>
       <header className="site-header">
-        <div className="container header-content">
+        <div className="container header-content" data-reveal>
           <a className="brand" href="#home" aria-label="SmartCrew Services home">
             <span className="brand-mark" aria-hidden="true">
               S
@@ -295,7 +295,7 @@ function App() {
               <span className="proof-value">0.5–55 kW</span>
               <span className="proof-label">Power range*</span>
             </div>
-            <p className="proof-note">
+            <p className="proof-note" data-reveal style={{ "--reveal-delay": "240ms" }}>
               *Specifications vary by model and configuration.
             </p>
           </div>
@@ -304,7 +304,7 @@ function App() {
         <section className="section solutions-section" id="solutions">
           <div className="container">
             <div className="section-heading" data-reveal>
-              <div>
+              <div data-reveal>
                 <p className="eyebrow eyebrow-dark">ENGINEERED FOR INDUSTRY</p>
                 <h2>
                   The right solution
@@ -389,19 +389,19 @@ function App() {
                 over time.
               </p>
               <div className="about-points">
-                <div>
+                <div data-reveal>
                   <span className="point-icon">
                     <CheckIcon />
                   </span>
                   Application-focused equipment guidance
                 </div>
-                <div>
+                <div data-reveal style={{ "--reveal-delay": "80ms" }}>
                   <span className="point-icon">
                     <CheckIcon />
                   </span>
                   Installation, commissioning & maintenance
                 </div>
-                <div>
+                <div data-reveal style={{ "--reveal-delay": "160ms" }}>
                   <span className="point-icon">
                     <CheckIcon />
                   </span>
@@ -558,7 +558,11 @@ function App() {
                   +91 90106 14946
                 </span>
               </a>
-              <a className="contact-detail" href="mailto:yj@smartscrew.in">
+              <a
+                className="contact-detail"
+                href="mailto:yj@smartscrew.in"
+                data-reveal
+              >
                 <span className="contact-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none">
                     <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -570,7 +574,7 @@ function App() {
                   yj@smartscrew.in
                 </span>
               </a>
-              <div className="contact-detail address-detail">
+              <div className="contact-detail address-detail" data-reveal>
                 <span className="contact-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none">
                     <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
@@ -587,7 +591,7 @@ function App() {
             </div>
 
             <form className="enquiry-form" data-reveal onSubmit={handleEnquiry}>
-              <div className="form-heading">
+              <div className="form-heading" data-reveal>
                 <div>
                   <span className="form-kicker">QUICK ENQUIRY</span>
                   <h3>How can we help?</h3>
@@ -595,7 +599,7 @@ function App() {
                 <span className="form-step">01 / 01</span>
               </div>
               <div className="form-fields">
-                <label>
+                <label data-reveal>
                   Your name <span aria-hidden="true">*</span>
                   <input
                     type="text"
@@ -605,7 +609,7 @@ function App() {
                     required
                   />
                 </label>
-                <label>
+                <label data-reveal style={{ "--reveal-delay": "60ms" }}>
                   Mobile number <span aria-hidden="true">*</span>
                   <input
                     type="tel"
@@ -615,7 +619,7 @@ function App() {
                     required
                   />
                 </label>
-                <label>
+                <label data-reveal style={{ "--reveal-delay": "120ms" }}>
                   Email address <span className="optional">(optional)</span>
                   <input
                     type="email"
@@ -624,7 +628,7 @@ function App() {
                     autoComplete="email"
                   />
                 </label>
-                <label>
+                <label data-reveal style={{ "--reveal-delay": "180ms" }}>
                   I'm interested in
                   <select name="product" defaultValue="">
                     <option value="">Select a solution</option>
@@ -636,7 +640,11 @@ function App() {
                     <option>Other enquiry</option>
                   </select>
                 </label>
-                <label className="message-field">
+                <label
+                  className="message-field"
+                  data-reveal
+                  style={{ "--reveal-delay": "240ms" }}
+                >
                   Tell us about your requirement
                   <textarea
                     name="message"
@@ -657,7 +665,7 @@ function App() {
       </main>
 
       <footer className="site-footer">
-        <div className="container footer-main">
+        <div className="container footer-main" data-reveal>
           <a className="brand footer-brand" href="#home">
             <span className="brand-mark" aria-hidden="true">
               S
@@ -679,7 +687,7 @@ function App() {
             <ArrowIcon diagonal />
           </a>
         </div>
-        <div className="container footer-bottom">
+        <div className="container footer-bottom" data-reveal>
           <span>© {new Date().getFullYear()} SmartCrew Services. All rights reserved.</span>
           <a href="mailto:yj@smartscrew.in">yj@smartscrew.in</a>
         </div>

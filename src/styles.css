@@ -88,6 +88,11 @@ img {
   align-items: center;
   gap: 11px;
   color: var(--navy);
+  transition: transform 220ms ease;
+}
+
+.brand:hover {
+  transform: translateY(-2px);
 }
 
 .brand-mark {
@@ -99,6 +104,14 @@ img {
   color: white;
   background: var(--navy);
   font: 800 24px/1 "Manrope", sans-serif;
+  transition:
+    transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 280ms ease;
+}
+
+.brand:hover .brand-mark {
+  transform: rotate(-5deg) scale(1.05);
+  box-shadow: 0 7px 16px rgb(8 40 74 / 17%);
 }
 
 .brand-name {
@@ -126,13 +139,32 @@ img {
 }
 
 .navigation > a:not(.nav-cta) {
+  position: relative;
   transition: color 180ms ease;
+}
+
+.navigation > a:not(.nav-cta)::after {
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  left: 0;
+  height: 2px;
+  background: var(--gold);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
 }
 
 .navigation > a:not(.nav-cta):hover,
 .text-link:hover,
 .card-link:hover {
   color: var(--blue);
+}
+
+.navigation > a:not(.nav-cta):hover::after,
+.navigation > a:not(.nav-cta):focus-visible::after {
+  transform: scaleX(1);
 }
 
 .nav-cta {
@@ -143,12 +175,20 @@ img {
   color: white;
   background: var(--navy);
   border-radius: 5px;
-  transition: background 180ms ease;
+  transition:
+    background 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .nav-cta:hover,
 .button-navy:hover {
   background: #124778;
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgb(8 40 74 / 18%);
 }
 
 .button-arrow {
@@ -440,6 +480,11 @@ p {
   flex-direction: column;
   padding: 10px 24px;
   border-right: 1px solid var(--line);
+  transition: transform 220ms ease;
+}
+
+.proof-item:hover {
+  transform: translateY(-3px);
 }
 
 .proof-item:first-child {
@@ -535,7 +580,8 @@ p {
   border-left: 1px solid var(--line);
 }
 
-.product-card:hover {
+.product-card:hover,
+.product-card:focus-within {
   z-index: 1;
   transform: translateY(-6px);
   background: #fbfcfd;
@@ -717,6 +763,25 @@ p {
   display: flex;
   align-items: center;
   gap: 11px;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.about-points > div:hover {
+  transform: translateX(4px);
+  color: var(--blue);
+}
+
+.point-icon {
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.about-points > div:hover .point-icon {
+  transform: scale(1.12);
+  box-shadow: 0 4px 11px rgb(40 93 63 / 15%);
 }
 
 .point-icon {
@@ -765,11 +830,19 @@ p {
   position: relative;
   min-height: 220px;
   padding: 24px 25px 27px;
-  transition: background 250ms ease;
+  transition:
+    background 250ms ease,
+    transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .service-card:hover {
+  transform: translateY(-4px);
   background: rgb(255 255 255 / 4%);
+}
+
+.service-card:focus-within {
+  transform: translateY(-4px);
+  background: rgb(255 255 255 / 7%);
 }
 
 .service-card + .service-card {
@@ -856,6 +929,12 @@ p {
 }
 
 .industry-item:hover {
+  transform: translateX(4px);
+  color: var(--blue);
+  background: rgb(255 255 255 / 70%);
+}
+
+.industry-item:focus-within {
   color: var(--blue);
   background: rgb(255 255 255 / 70%);
 }
@@ -1064,7 +1143,10 @@ a.contact-detail:hover {
   background: #fff;
   font-size: 11px;
   font-weight: 400;
-  transition: border-color 160ms ease;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
 }
 
 .form-fields input::placeholder,
@@ -1076,6 +1158,18 @@ a.contact-detail:hover {
 .form-fields select:focus,
 .form-fields textarea:focus {
   border-color: #3478af;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgb(52 120 175 / 10%);
+}
+
+.form-fields input:hover:not(:focus),
+.form-fields select:hover:not(:focus),
+.form-fields textarea:hover:not(:focus) {
+  border-color: #b9c9d6;
+}
+
+.form-fields label:focus-within {
+  color: var(--blue);
 }
 
 .form-fields select {
@@ -1143,6 +1237,14 @@ a.contact-detail:hover {
   color: #dbe8f2;
   font-size: 11px;
   font-weight: 700;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.footer-whatsapp:hover {
+  transform: translateY(-2px);
+  color: white;
 }
 
 .footer-whatsapp > svg:first-child {
@@ -1168,6 +1270,10 @@ a.contact-detail:hover {
 
 .footer-bottom a:hover {
   color: white;
+}
+
+.footer-bottom a {
+  transition: color 180ms ease;
 }
 
 .floating-whatsapp {
@@ -1197,6 +1303,25 @@ a.contact-detail:hover {
   box-shadow: 0 12px 30px rgb(0 0 0 / 25%);
 }
 
+.menu-toggle {
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.menu-toggle:hover {
+  transform: translateY(-1px);
+  border-color: #c9d4dd;
+  background: #f5f8fa;
+}
+
+.menu-toggle span {
+  transition:
+    transform 180ms ease,
+    width 180ms ease;
+}
+
 .floating-whatsapp svg {
   width: 19px;
   height: 19px;
@@ -1220,8 +1345,28 @@ html.reveal-ready .product-card[data-reveal].is-visible:hover {
   transform: translate3d(0, -6px, 0);
 }
 
+html.reveal-ready .product-card[data-reveal].is-visible:focus-within {
+  transform: translate3d(0, -6px, 0);
+}
+
+html.reveal-ready .proof-item[data-reveal].is-visible:hover {
+  transform: translate3d(0, -3px, 0);
+}
+
 html.reveal-ready .about-image-wrap[data-reveal].is-visible:hover {
   transform: translate3d(0, -4px, 0);
+}
+
+html.reveal-ready .service-card[data-reveal].is-visible:hover {
+  transform: translate3d(0, -4px, 0);
+}
+
+html.reveal-ready .service-card[data-reveal].is-visible:focus-within {
+  transform: translate3d(0, -4px, 0);
+}
+
+html.reveal-ready .industry-item[data-reveal].is-visible:hover {
+  transform: translate3d(4px, 0, 0);
 }
 
 @media (max-width: 950px) {
@@ -1314,6 +1459,7 @@ html.reveal-ready .about-image-wrap[data-reveal].is-visible:hover {
   .navigation-open {
     display: flex;
     flex-direction: column;
+    animation: menu-drop-in 220ms ease both;
   }
 
   .navigation > a:not(.nav-cta) {
@@ -1594,5 +1740,17 @@ html.reveal-ready .about-image-wrap[data-reveal].is-visible:hover {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+@keyframes menu-drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-7px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
