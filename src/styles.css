@@ -143,6 +143,14 @@ img {
   transition: color 180ms ease;
 }
 
+.card-link .button-arrow {
+  transition: transform 200ms ease;
+}
+
+.card-link:hover .button-arrow {
+  transform: translate(2px, -2px);
+}
+
 .navigation > a:not(.nav-cta)::after {
   position: absolute;
   right: 0;
@@ -207,6 +215,7 @@ img {
 
 .hero {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   padding: 76px 0 82px;
   color: white;
@@ -217,6 +226,7 @@ img {
 
 .hero::before {
   position: absolute;
+  z-index: -1;
   inset: 0 0 0 auto;
   width: 46%;
   background-image: linear-gradient(90deg, #08284a 0%, transparent 58%),
@@ -227,8 +237,23 @@ img {
   pointer-events: none;
 }
 
+.hero::after {
+  position: absolute;
+  z-index: -1;
+  top: -220px;
+  right: 12%;
+  width: 530px;
+  height: 530px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(71 148 196 / 18%), transparent 68%);
+  content: "";
+  pointer-events: none;
+  animation: ambient-drift 15s ease-in-out infinite alternate;
+}
+
 .hero-layout {
   position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 0.92fr;
   align-items: center;
@@ -256,6 +281,14 @@ img {
   width: 27px;
   height: 2px;
   background: var(--gold);
+}
+
+.service-card > a .button-arrow {
+  transition: transform 200ms ease;
+}
+
+.service-card > a:hover .button-arrow {
+  transform: translate(1px, -1px);
 }
 
 h1,
@@ -326,6 +359,14 @@ p {
 .button:hover {
   transform: translateY(-2px);
   box-shadow: 0 9px 24px rgb(3 18 34 / 20%);
+}
+
+.button .button-arrow {
+  transition: transform 220ms ease;
+}
+
+.button:hover .button-arrow {
+  transform: translateX(3px);
 }
 
 .button-gold {
@@ -439,6 +480,8 @@ p {
   flex: 0 0 auto;
   border-radius: 50%;
   background: var(--gold);
+  box-shadow: 0 0 0 0 rgb(247 189 38 / 35%);
+  animation: status-pulse 2.4s ease-out infinite;
 }
 
 .hero-index {
@@ -456,11 +499,51 @@ p {
 
 .hero-bottom-line {
   position: absolute;
+  z-index: 2;
   right: 0;
   bottom: 0;
   left: 0;
   height: 4px;
   background: linear-gradient(90deg, var(--gold) 0 22%, transparent 22%);
+}
+
+.solution-marquee {
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: #fffdf8;
+}
+
+.solution-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-travel 36s linear infinite;
+}
+
+.solution-marquee:hover .solution-marquee-track {
+  animation-play-state: paused;
+}
+
+.solution-marquee-group {
+  display: flex;
+  min-height: 55px;
+  align-items: center;
+  gap: 30px;
+  padding: 0 30px 0 0;
+  color: #536475;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.15px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.solution-marquee-group i {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border: 1.5px solid #bd8d17;
+  border-radius: 50%;
+  transform: rotate(45deg);
 }
 
 .proof-strip {
@@ -563,6 +646,7 @@ p {
 }
 
 .product-card {
+  overflow: hidden;
   position: relative;
   z-index: 0;
   display: flex;
@@ -574,6 +658,24 @@ p {
     transform 300ms cubic-bezier(0.2, 0.7, 0.2, 1),
     box-shadow 300ms ease,
     background 200ms ease;
+}
+
+.product-card::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: var(--gold);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.product-card:hover::before,
+.product-card:focus-within::before {
+  transform: scaleX(1);
 }
 
 .product-card + .product-card {
@@ -728,6 +830,7 @@ p {
   background: rgb(255 255 255 / 94%);
   font-size: 10px;
   font-weight: 700;
+  animation: badge-float 5s ease-in-out infinite;
 }
 
 .image-label .caption-dot {
@@ -1303,6 +1406,14 @@ a.contact-detail:hover {
   box-shadow: 0 12px 30px rgb(0 0 0 / 25%);
 }
 
+.floating-whatsapp svg {
+  transition: transform 220ms ease;
+}
+
+.floating-whatsapp:hover svg {
+  transform: rotate(-12deg) scale(1.08);
+}
+
 .menu-toggle {
   transition:
     background 180ms ease,
@@ -1405,6 +1516,45 @@ html.reveal-ready .industry-item[data-reveal].is-visible:hover {
   .about-image-wrap,
   .about-image-wrap img {
     min-height: 400px;
+  }
+}
+
+@keyframes ambient-drift {
+  from {
+    transform: translate3d(-18px, 0, 0) scale(0.94);
+    opacity: 0.55;
+  }
+  to {
+    transform: translate3d(35px, 48px, 0) scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes status-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(247 189 38 / 38%);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgb(247 189 38 / 0%);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(247 189 38 / 0%);
+  }
+}
+
+@keyframes marquee-travel {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes badge-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
   }
 }
 
@@ -1741,6 +1891,16 @@ html.reveal-ready .industry-item[data-reveal].is-visible:hover {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
+  }
+
+  html.reveal-ready [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .solution-marquee-track {
+    animation: none !important;
+    transform: none !important;
   }
 }
 

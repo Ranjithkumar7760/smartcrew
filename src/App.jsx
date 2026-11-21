@@ -273,6 +273,29 @@ function App() {
           <div className="hero-bottom-line" />
         </section>
 
+        <div
+          className="solution-marquee"
+          role="img"
+          aria-label="SmartCrew solutions: industrial heating and cooling, precision temperature control, process chillers, installation and service, thermal oil systems"
+        >
+          <div className="solution-marquee-track" aria-hidden="true">
+            {[0, 1].map((copy) => (
+              <div className="solution-marquee-group" key={copy}>
+                <span>Industrial heating & cooling</span>
+                <i />
+                <span>Precision temperature control</span>
+                <i />
+                <span>Process chillers</span>
+                <i />
+                <span>Installation & service</span>
+                <i />
+                <span>Thermal oil solutions</span>
+                <i />
+              </div>
+            ))}
+          </div>
+        </div>
+
         <section className="proof-strip" aria-label="Product capabilities">
           <div className="container proof-grid">
             <div className="proof-item" data-reveal>
